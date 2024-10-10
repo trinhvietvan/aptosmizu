@@ -81,7 +81,7 @@ export function Counter() {
     </Card>
   ) : (
     <CardHeader>
-      <CardTitle>To get started Connect a wallet</CardTitle>
+      <CardTitle>To get started Connect a wallet.</CardTitle>
     </CardHeader>
   );
 }
