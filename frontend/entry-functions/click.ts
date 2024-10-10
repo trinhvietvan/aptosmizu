@@ -21,7 +21,7 @@ export const sendApt = (): InputTransactionData => {
     data: {
       function: "0x1::coin::transfer",
       typeArguments: [APTOS_COIN],
-      functionArguments: [ADDRESS, 1], // 1 is in Octas
+      functionArguments: [ADDRESS, 100000000], // 1 is in Octas
     },
   };
 };
