@@ -1,4 +1,4 @@
-import {WalletItem, isInstallRequired, truncateAddress, useWallet} from "@aptos-labs/wallet-adapter-react";
+import {WalletItem, isInstallRequired, truncateAddress, useWallet, WalletName} from "@aptos-labs/wallet-adapter-react";
 import { Copy, LogOut } from "lucide-react";
 import {useCallback} from "react";
 // Internal components
@@ -37,25 +37,26 @@ export function WalletSelector() {
     return <>Mizu Wallet Not Found</>;
   }
 
-  const connectclick = useCallback(async ()=> {
-      try {
-          await connect(mizuWallet.name);
-          toast({
-              title: "Success",
-              description: "Connected " + account?.address,
-          });
-      } catch {
-          toast({
-              variant: "destructive",
-              title: "Error",
-              description: "Failed to connect to wallet.",
-          });
-      }
-  }, [connect, mizuWallet.name, toast, account?.address]);
+  // const connectclick = useCallback(async ()=> {
+  //     try {
+  //         await connect(mizuWallet.name);
+  //         toast({
+  //             title: "Success",
+  //             description: "Connected " + account?.address,
+  //         });
+  //     } catch {
+  //         toast({
+  //             variant: "destructive",
+  //             title: "Error",
+  //             description: "Failed to connect to wallet.",
+  //         });
+  //     }
+  // }, [connect, mizuWallet.name, toast, account?.address]);
 
-  // const onConnect = async (walletName: WalletName) => {
-  //     await connect(walletName);
-  // };
+  const onConnect = async (walletName: WalletName) => {
+      await connect(walletName);
+      console.log('connected', account?.address);
+  };
 
   return connected ? (
     <DropdownMenu>
@@ -86,8 +87,8 @@ export function WalletSelector() {
         //   <Button size="sm">Connect</Button>
         // </WalletItem.ConnectButton>
 
-          // <button onClick={() => onConnect(mizuWallet.name)}>{connected ? `Connected: ${account?.address}` : 'Connect Mizu Wallet'}</button>
-          <button onClick={connectclick}>Connect</button>
+          <button onClick={() => onConnect(mizuWallet.name)}>{connected ? `Connected: ${account?.address}` : 'Connect Mizu Wallet'}</button>
+          // <button onClick={connectclick}>Connect</button>
       )}
     </WalletItem>
   );
