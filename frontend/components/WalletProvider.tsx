@@ -15,7 +15,7 @@ export function WalletProvider({ children }: PropsWithChildren) {
         network: NETWORK,
         mizuwallet: {
           // Learn more https://docs.mizu.io/docs/preparation/mizu-app-id
-          appId: undefined,
+          // appId: undefined,
           // Learn more https://docs.mizu.io/docs/preparation/manifest-json
           manifestURL: "https://assets.mz.xyz/static/config/mizuwallet-connect-manifest.json",
         },
