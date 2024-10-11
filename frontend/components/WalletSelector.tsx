@@ -69,7 +69,7 @@ export function WalletSelector() {
         // <WalletItem.ConnectButton asChild>
         //   <Button size="sm">Connect</Button>
         // </WalletItem.ConnectButton>
-          <button onClick={() => onConnect(mizuWallet.name)}>{mizuWallet.name}</button>
+          <button onClick={() => onConnect("Mizu Wallet")}>{mizuWallet.name}</button>
       )}
     </WalletItem>
   );
