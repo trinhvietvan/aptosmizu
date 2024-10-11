@@ -24,7 +24,7 @@ export function WalletProvider({ children }: PropsWithChildren) {
       onError={(error) => {
         toast({
           variant: "destructive",
-          title: "Error",
+          title: "Error cac",
           description: error || "Unknown wallet error",
         });
       }}
