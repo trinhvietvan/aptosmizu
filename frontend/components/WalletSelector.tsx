@@ -40,6 +40,7 @@ export function WalletSelector() {
     const onConnect = async (walletName: WalletName) => {
         await connect(walletName);
         setTimeout(() => {
+            document.getElementById("demo").innerHTML = account?.address || "Unknown";
             console.log(`Wallet connected: ${account?.address}`);
         }, 1000);
     };
