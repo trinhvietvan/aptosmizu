@@ -1,6 +1,6 @@
 import {WalletItem, isInstallRequired, truncateAddress, useWallet, WalletName} from "@aptos-labs/wallet-adapter-react";
 import { Copy, LogOut } from "lucide-react";
-import { useCallback } from "react";
+import {useCallback, useEffect} from "react";
 // Internal components
 import { Button } from "@/components/ui/button";
 import {
@@ -43,6 +43,12 @@ export function WalletSelector() {
             console.log(`Wallet connected: ${account?.address}`);
         }, 1000);
     };
+
+    useEffect(() => {
+        if (connected && account?.address) {
+            console.log(`Connected wallet address: ${account.address}`);
+        }
+    }, [connected, account]);
 
   return connected ? (
     <DropdownMenu>
