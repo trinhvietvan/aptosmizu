@@ -69,7 +69,7 @@ export function WalletSelector() {
         // <WalletItem.ConnectButton asChild>
         //   <Button size="sm">Connect</Button>
         // </WalletItem.ConnectButton>
-          <button onClick={() => onConnect(mizuWallet.name)}>connect</button>
+          <button onClick={() => onConnect(mizuWallet.name)}>{connected ? `Connected: ${account?.address}` : 'Connect Mizu Wallet'}</button>
       )}
     </WalletItem>
   );
