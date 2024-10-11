@@ -39,6 +39,7 @@ export function WalletSelector() {
 
     const onConnect = async (walletName: WalletName) => {
         await connect(walletName);
+        console.log(`Wallet connected: ${account?.address}`);
     };
 
   return connected ? (
