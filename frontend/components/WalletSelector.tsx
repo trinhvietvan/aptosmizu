@@ -1,4 +1,4 @@
-import {WalletItem, isInstallRequired, truncateAddress, useWallet, WalletName} from "@aptos-labs/wallet-adapter-react";
+import {WalletItem, isInstallRequired, truncateAddress, useWallet} from "@aptos-labs/wallet-adapter-react";
 import { Copy, LogOut } from "lucide-react";
 import {useCallback} from "react";
 // Internal components
