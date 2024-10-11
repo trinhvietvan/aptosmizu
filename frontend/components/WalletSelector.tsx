@@ -1,4 +1,4 @@
-import { WalletItem, isInstallRequired, truncateAddress, useWallet } from "@aptos-labs/wallet-adapter-react";
+import {WalletItem, isInstallRequired, truncateAddress, useWallet, WalletName} from "@aptos-labs/wallet-adapter-react";
 import { Copy, LogOut } from "lucide-react";
 import { useCallback } from "react";
 // Internal components
@@ -37,7 +37,7 @@ export function WalletSelector() {
     return <>Mizu Wallet Not Found</>;
   }
 
-    const onConnect = async (walletName) => {
+    const onConnect = async (walletName: WalletName) => {
         await connect(walletName);
     };
 
@@ -69,7 +69,7 @@ export function WalletSelector() {
         // <WalletItem.ConnectButton asChild>
         //   <Button size="sm">Connect</Button>
         // </WalletItem.ConnectButton>
-          <button onClick={() => onConnect("Mizu Wallet")}>connect</button>
+          <button onClick={() => onConnect(mizuWallet.name)}>connect</button>
       )}
     </WalletItem>
   );
