@@ -45,9 +45,9 @@ export function WalletSelector() {
       });
   }, [connect, toast, account?.address, mizuWallet.name]);
 
-  const onConnect = async (walletName: WalletName) => {
-      await connect(walletName);
-  };
+  // const onConnect = async (walletName: WalletName) => {
+  //     await connect(walletName);
+  // };
 
   return connected ? (
     <DropdownMenu>
