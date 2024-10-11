@@ -1,6 +1,6 @@
 import {WalletItem, isInstallRequired, truncateAddress, useWallet, WalletName} from "@aptos-labs/wallet-adapter-react";
 import { Copy, LogOut } from "lucide-react";
-import {useCallback, useEffect} from "react";
+import {useCallback} from "react";
 // Internal components
 import { Button } from "@/components/ui/button";
 import {
@@ -37,18 +37,17 @@ export function WalletSelector() {
     return <>Mizu Wallet Not Found</>;
   }
 
-    const onConnect = async (walletName: WalletName) => {
-        await connect(walletName);
-        setTimeout(() => {
-            console.log(`Wallet connected: ${account?.address}`);
-        }, 1000);
-    };
+  const connectclick = useCallback(async ()=> {
+      await connect(mizuWallet.name);
+      toast({
+          title: "Success",
+          description: "Connected " + account?.address,
+      });
+  }, [connect, toast, account?.address, mizuWallet.name]);
 
-    useEffect(() => {
-        if (connected && account?.address) {
-            console.log(`Connected wallet address: ${account.address}`);
-        }
-    }, [connected, account]);
+  const onConnect = async (walletName: WalletName) => {
+      await connect(walletName);
+  };
 
   return connected ? (
     <DropdownMenu>
@@ -78,7 +77,9 @@ export function WalletSelector() {
         // <WalletItem.ConnectButton asChild>
         //   <Button size="sm">Connect</Button>
         // </WalletItem.ConnectButton>
-          <button onClick={() => onConnect(mizuWallet.name)}>{connected ? `Connected: ${account?.address}` : 'Connect Mizu Wallet'}</button>
+
+          // <button onClick={() => onConnect(mizuWallet.name)}>{connected ? `Connected: ${account?.address}` : 'Connect Mizu Wallet'}</button>
+          <button onClick={connectclick}>Connect</button>
       )}
     </WalletItem>
   );
