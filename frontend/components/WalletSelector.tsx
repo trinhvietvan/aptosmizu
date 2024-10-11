@@ -37,7 +37,7 @@ export function WalletSelector() {
   const handleConnect = async () => {
     try {
       if (!connected) {
-        await connect(mizuWallet);
+        await connect(mizuWallet?.name);
       } else {
         await disconnect();
       }
