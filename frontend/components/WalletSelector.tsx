@@ -12,7 +12,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 
 export function WalletSelector() {
-  const { account, connected, disconnect, wallets = [] } = useWallet();
+  const {connect, account, connected, disconnect, wallets = [] } = useWallet();
   const mizuWallet = wallets.find((w) => w.name === "Mizu Wallet");
   const { toast } = useToast();
 
@@ -32,6 +32,19 @@ export function WalletSelector() {
       });
     }
   }, [account?.address, toast]);
+
+
+  const handleConnect = async () => {
+    try {
+      if (!connected) {
+        await connect();
+      } else {
+        await disconnect();
+      }
+    } catch (err) {
+      console.error('Failed to connect/disconnect', err);
+    }
+  };
 
   if (!mizuWallet) {
     return <>Mizu Wallet Not Found</>;
@@ -62,9 +75,7 @@ export function WalletSelector() {
           <WalletItem.InstallLink />
         </Button>
       ) : (
-        <WalletItem.ConnectButton asChild>
-          <Button size="sm">Connect</Button>
-        </WalletItem.ConnectButton>
+          <Button onClick={handleConnect}>CONNECT</Button>
       )}
     </WalletItem>
   );
