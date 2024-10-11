@@ -33,17 +33,19 @@ export function WalletSelector() {
     }
   }, [account?.address, toast]);
 
+    const connectclick = useCallback(async ()=> {
+        await connect(mizuWallet.name);
+        toast({
+            title: "Success",
+            description: "Connected " + account?.address,
+        });
+    }, [connect, mizuWallet.name, toast, account?.address]);
+
   if (!mizuWallet) {
     return <>Mizu Wallet Not Found</>;
   }
 
-  const connectclick = useCallback(async ()=> {
-      await connect(mizuWallet.name);
-      toast({
-          title: "Success",
-          description: "Connected " + account?.address,
-      });
-  }, [connect, toast, account?.address, mizuWallet.name]);
+
 
   // const onConnect = async (walletName: WalletName) => {
   //     await connect(walletName);
