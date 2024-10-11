@@ -39,7 +39,9 @@ export function WalletSelector() {
 
     const onConnect = async (walletName: WalletName) => {
         await connect(walletName);
-        console.log(`Wallet connected: ${account?.address}`);
+        setTimeout(() => {
+            console.log(`Wallet connected: ${account?.address}`);
+        }, 1000);
     };
 
   return connected ? (
