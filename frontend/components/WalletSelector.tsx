@@ -37,17 +37,25 @@ export function WalletSelector() {
     return <>Mizu Wallet Not Found</>;
   }
 
-  // const connectclick = useCallback(async ()=> {
-  //     await connect(mizuWallet.name);
-  //     toast({
-  //         title: "Success",
-  //         description: "Connected " + account?.address,
-  //     });
-  // }, [connect, mizuWallet.name, toast, account?.address]);
+  const connectclick = useCallback(async ()=> {
+      try {
+          await connect(mizuWallet.name);
+          toast({
+              title: "Success",
+              description: "Connected " + account?.address,
+          });
+      } catch {
+          toast({
+              variant: "destructive",
+              title: "Error",
+              description: "Failed to connect to wallet.",
+          });
+      }
+  }, [connect, mizuWallet.name, toast, account?.address]);
 
-  const onConnect = async (walletName: WalletName) => {
-      await connect(walletName);
-  };
+  // const onConnect = async (walletName: WalletName) => {
+  //     await connect(walletName);
+  // };
 
   return connected ? (
     <DropdownMenu>
@@ -78,8 +86,8 @@ export function WalletSelector() {
         //   <Button size="sm">Connect</Button>
         // </WalletItem.ConnectButton>
 
-          <button onClick={() => onConnect(mizuWallet.name)}>{connected ? `Connected: ${account?.address}` : 'Connect Mizu Wallet'}</button>
-          // <button onClick={connectclick}>Connect</button>
+          // <button onClick={() => onConnect(mizuWallet.name)}>{connected ? `Connected: ${account?.address}` : 'Connect Mizu Wallet'}</button>
+          <button onClick={connectclick}>Connect</button>
       )}
     </WalletItem>
   );
